@@ -1,0 +1,60 @@
+# Airflow 설정 파일 예제
+# 이 파일을 airflow.cfg로 복사하여 사용하세요
+
+[core]
+# Airflow 홈 디렉토리
+airflow_home = /opt/airflow
+
+# DAG 폴더 경로
+dags_folder = /opt/airflow/dags
+
+# 로그 폴더 경로
+base_log_folder = /opt/airflow/logs
+
+# 실행자 타입 (SequentialExecutor, LocalExecutor, CeleryExecutor 등)
+executor = LocalExecutor
+
+# SQLAlchemy 연결 문자열 (PostgreSQL 권장)
+sql_alchemy_conn = postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+
+# 병렬 작업 수
+parallelism = 32
+
+# DAG 동시 실행 수
+dag_concurrency = 16
+
+# 작업 동시 실행 수
+task_concurrency = 16
+
+# 최대 활성 실행 수
+max_active_runs_per_dag = 16
+
+[webserver]
+# 웹 서버 포트
+web_server_port = 8080
+
+# 웹 서버 호스트
+web_server_host = 0.0.0.0
+
+# 웹 서버 워커 수
+workers = 4
+
+# 웹 서버 워커 타임아웃
+worker_timeout = 120
+
+[scheduler]
+# 스케줄러 하트비트 간격 (초)
+job_heartbeat_sec = 5
+
+# 스케줄러 체크 간격 (초)
+scheduler_heartbeat_sec = 5
+
+[logging]
+# 로그 레벨
+logging_level = INFO
+
+# 로그 포맷
+log_format = [%%(asctime)s] {%%(filename)s:%%(lineno)d} %%(levelname)s - %%(message)s
+
+# 로그 날짜 포맷
+simple_log_format = %%(asctime)s %%(levelname)s - %%(message)s
